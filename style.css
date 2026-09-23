@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4a1f8f, #6a3fd1);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  color: #5a2fb8;
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+}
+
+.section {
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.section h3 {
+  color: #3d1e80;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.hint {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 8px;
+  transition: opacity 0.2s;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background: #5a2fb8;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: #ece3fb;
+  color: #5a2fb8;
+  width: 48%;
+  display: inline-block;
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #5a2fb8;
+  border: 2px solid #5a2fb8;
+}
+
+.btn-send {
+  background: #3d1e80;
+  color: #ffffff;
+  font-size: 17px;
+  padding: 16px;
+}
+
+.recorder-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.recorder-controls .btn {
+  width: auto;
+  flex: 1;
+}
+
+#audioPreview {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.instructions-box {
+  background: #f2ecfc;
+  border-left: 4px solid #5a2fb8;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.status-text {
+  font-size: 13px;
+  color: #5a2fb8;
+  margin-top: 6px;
+  text-align: center;
+  min-height: 18px;
+}
+
+#errorState {
+  text-align: center;
+}
+
+#errorState h2 {
+  color: #d9534f;
+  margin-bottom: 10px;
+}
+
+#loadingState {
+  text-align: center;
+  color: #5a2fb8;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petbield - Found a Pet?</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Loading state, shown while we check the card code -->
+        <div id="loadingState" class="card">
+            <p>Loading pet details...</p>
+        </div>
+
+        <!-- Error state, shown if card code is invalid or missing -->
+        <div id="errorState" class="card hidden">
+            <h2>Oops!</h2>
+            <p id="errorMessage">Something went wrong. Please try again.</p>
+        </div>
+
+        <!-- Main content, shown once card is verified -->
+        <div id="mainContent" class="card hidden">
+            <div class="header">
+                <h1>🐾 <span id="petName">Pet</span></h1>
+                <p class="subtitle">This pet's owner is looking for them. Thank you for scanning!</p>
+            </div>
+
+            <!-- Step 1: Location -->
+            <div class="section">
+                <h3>Step 1: Share Your Location</h3>
+                <p class="hint">This helps the owner find their pet quickly.</p>
+                <button id="locationBtn" class="btn btn-primary">📍 Share My Location</button>
+                <p id="locationStatus" class="status-text"></p>
+            </div>
+
+            <!-- Step 2: Voice message -->
+            <div class="section">
+                <h3>Step 2: Leave a Voice Message (Optional)</h3>
+                <p class="hint">Tell the owner where you found their pet.</p>
+                <div class="recorder-controls">
+                    <button id="recordBtn" class="btn btn-secondary">🎙️ Start Recording</button>
+                    <button id="stopBtn" class="btn btn-secondary hidden">⏹️ Stop</button>
+                    <button id="restartBtn" class="btn btn-outline hidden">🔄 Re-record</button>
+                </div>
+                <audio id="audioPreview" class="hidden" controls></audio>
+            </div>
+
+            <!-- Step 3: Special instructions from owner -->
+            <div class="section">
+                <h3>Special Instructions from Owner</h3>
+                <p id="specialInstructions" class="instructions-box">No special instructions provided.</p>
+            </div>
+
+            <!-- Send button -->
+            <button id="sendBtn" class="btn btn-send">✅ Send Info to Owner</button>
+            <p id="sendStatus" class="status-text"></p>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
