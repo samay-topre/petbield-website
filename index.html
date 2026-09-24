@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Petbield - Found a Pet?</title>
+    <title>PetBield - Found a Pet?</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -59,7 +59,18 @@
             <!-- Send button -->
             <button id="sendBtn" class="btn btn-send">✅ Send Info to Owner</button>
             <p id="sendStatus" class="status-text"></p>
+        </div>
 
+        <!-- Thank you state, shown after a successful send (sibling of mainContent, NOT inside it) -->
+        <div id="thankYouState" class="card hidden">
+            <div class="header">
+                <h1>🙏 Thank You!</h1>
+                <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.</p>
+            </div>
+            <p class="hint" style="text-align:center; margin-bottom:20px;">
+                Want to send another update (new location or voice message) to the owner?
+            </p>
+            <button id="sendAnotherBtn" class="btn btn-primary">Yes, Send Another Update</button>
         </div>
 
     </div>

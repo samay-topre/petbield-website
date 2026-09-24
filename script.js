@@ -1,12 +1,10 @@
 // ====== SUPABASE SETUP ======
-// Replace these two values with YOUR Project URL and anon key from Supabase Settings > API
 const SUPABASE_URL = "https://wkhlecvfygujdxokqoln.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_4p9Ng4ST9gaIqUkFKlwryw_iaXrdK3E";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ====== GET CARD CODE FROM THE URL ======
-// Example URL: https://petbield.com/index.html?id=PB00001
 const urlParams = new URLSearchParams(window.location.search);
 const cardCode = urlParams.get("id");
 
@@ -28,6 +26,10 @@ const audioPreview = document.getElementById("audioPreview");
 
 const sendBtn = document.getElementById("sendBtn");
 const sendStatus = document.getElementById("sendStatus");
+
+const thankYouState = document.getElementById("thankYouState");
+const thankYouPetName = document.getElementById("thankYouPetName");
+const sendAnotherBtn = document.getElementById("sendAnotherBtn");
 
 // ====== STATE VARIABLES ======
 let capturedLat = null;
@@ -157,7 +159,6 @@ sendBtn.addEventListener("click", async () => {
   try {
     let voiceUrl = null;
 
-    // If a voice message was recorded, upload it to Supabase Storage first
     if (audioBlob) {
       const fileName = `${cardCode}_${Date.now()}.webm`;
 
@@ -177,7 +178,6 @@ sendBtn.addEventListener("click", async () => {
       voiceUrl = publicUrlData.publicUrl;
     }
 
-    // Now save the scan record (location + voice url) via our safe function
     const { error: submitError } = await supabaseClient.rpc("submit_scan", {
       p_card_code: cardCode,
       p_latitude: capturedLat,
@@ -190,9 +190,10 @@ sendBtn.addEventListener("click", async () => {
       return;
     }
 
-    sendStatus.textContent = "✅ Sent! Thank you for helping reunite this pet with their owner.";
-    sendBtn.disabled = true;
-    sendBtn.textContent = "Sent";
+    // Show the Thank You screen instead of just a status message
+    thankYouPetName.textContent = petNameEl.textContent;
+    mainContent.classList.add("hidden");
+    thankYouState.classList.remove("hidden");
   } catch (err) {
     showFailure();
   }
@@ -202,3 +203,8 @@ function showFailure() {
   sendStatus.textContent = "Unknown error occurred. Please try again.";
   sendBtn.disabled = false;
 }
+
+// ====== SEND ANOTHER UPDATE (reload page fresh, like rescanning) ======
+sendAnotherBtn.addEventListener("click", () => {
+  window.location.reload();
+});
