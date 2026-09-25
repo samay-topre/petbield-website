@@ -166,6 +166,11 @@ restartBtn.addEventListener("click", () => {
 
 // ====== SEND BUTTON ======
 sendBtn.addEventListener("click", async () => {
+  if (capturedLat === null || capturedLng === null) {
+    sendStatus.textContent = "⚠️ Please share your location before sending.";
+    return;
+  }
+
   sendBtn.disabled = true;
   sendStatus.textContent = "Sending...";
 
