@@ -79,14 +79,19 @@ async function loadCardInfo() {
         : "No special instructions provided.";
 
     // Show drop-off address + Google Maps link, if owner set a location
-        if (card.owner_latitude && card.owner_longitude) {
+          if (card.owner_latitude && card.owner_longitude) {
       dropoffSection.classList.remove("hidden");
-      document.body.classList.add("has-dropoff");
       dropoffAddress.textContent =
         card.owner_address && card.owner_address.trim() !== ""
           ? card.owner_address
           : "No address text provided, use the map link below.";
       dropoffMapLink.href = `https://www.google.com/maps?q=${card.owner_latitude},${card.owner_longitude}`;
+
+      // Push page content down by exactly the drop-off box's real height, so nothing overlaps
+      setTimeout(() => {
+        const dropoffHeight = dropoffSection.offsetHeight;
+        document.querySelector(".container").style.paddingTop = (dropoffHeight + 20) + "px";
+      }, 0);
     }
 
     loadingState.classList.add("hidden");

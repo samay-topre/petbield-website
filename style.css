@@ -26,9 +26,7 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-body.has-dropoff .container {
-  padding-top: 190px;
-}
+
 
 .container {
   width: 100%;
