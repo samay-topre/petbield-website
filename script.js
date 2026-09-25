@@ -79,8 +79,9 @@ async function loadCardInfo() {
         : "No special instructions provided.";
 
     // Show drop-off address + Google Maps link, if owner set a location
-    if (card.owner_latitude && card.owner_longitude) {
+        if (card.owner_latitude && card.owner_longitude) {
       dropoffSection.classList.remove("hidden");
+      document.body.classList.add("has-dropoff");
       dropoffAddress.textContent =
         card.owner_address && card.owner_address.trim() !== ""
           ? card.owner_address
