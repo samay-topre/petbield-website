@@ -10,7 +10,19 @@
 
 <body>
 
-    <div class="container">
+      <div class="container">
+
+        <!-- Owner's preferred drop-off location - stays visible across main content AND thank you screen -->
+        <div id="dropoffSection" class="card hidden" style="margin-bottom:14px;">
+            <h3 style="color:#3d1e80; margin-bottom:8px;">📍 Preferred Drop-off Location</h3>
+            <p id="dropoffAddress" class="instructions-box" style="margin-bottom:10px;"></p>
+            <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
+                style="display:block; text-align:center; text-decoration:none;">
+                Open in Google Maps
+            </a>
+        </div>
+
+        <!-- Loading state, shown while we check the card code -->
 
         <!-- Owner's preferred drop-off location - always visible once loaded, independent of page state -->
        
@@ -32,14 +44,14 @@
                 <p class="subtitle">This pet's owner is looking for them. Thank you for scanning!</p>
             </div>
 
-            <div id="dropoffSection" class="hidden">
+            <!-- <div id="dropoffSection" class="hidden">
                 <h3>📍 Preferred Drop-off Location</h3>
                 <p id="dropoffAddress" class="instructions-box" style="margin: 8px 0 10px;"></p>
                 <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
                     style="display:block; text-align:center; text-decoration:none;">
                     Open in Google Maps
                 </a>
-            </div>
+            </div> -->
 
             <!-- Step 1: Location -->
             <div class="section">

@@ -14,14 +14,6 @@ body {
   padding: 20px;
 }
 
-#dropoffSection {
-  background: #f2ecfc;
-  border: 2px solid #5a2fb8;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 22px;
-}
-
 #dropoffSection h3 {
   display: flex;
   align-items: center;
