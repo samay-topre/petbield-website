@@ -140,8 +140,7 @@ stopBtn.addEventListener("click", () => {
     mediaRecorder.stop();
   }
   stopBtn.classList.add("hidden");
-  recordBtn.classList.remove("hidden");
-  recordBtn.textContent = "🎙️ Start Recording";
+  recordBtn.classList.add("hidden"); // hide "Start Recording" too, only show preview + re-record
 });
 
 restartBtn.addEventListener("click", () => {
@@ -149,6 +148,8 @@ restartBtn.addEventListener("click", () => {
   audioPreview.classList.add("hidden");
   restartBtn.classList.add("hidden");
   audioPreview.src = "";
+  recordBtn.classList.remove("hidden"); // bring back "Start Recording" so they can record fresh
+  recordBtn.textContent = "🎙️ Start Recording";
 });
 
 // ====== SEND BUTTON ======
