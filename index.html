@@ -30,6 +30,15 @@
                 <p class="subtitle">This pet's owner is looking for them. Thank you for scanning!</p>
             </div>
 
+            <div id="dropoffSection" class="section hidden">
+                <h3>📍 Preferred Drop-off Location</h3>
+                <p id="dropoffAddress" class="instructions-box" style="margin-bottom:10px;"></p>
+                <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
+                    style="display:block; text-align:center; text-decoration:none;">
+                    Open in Google Maps
+                </a>
+            </div>
+
             <!-- Step 1: Location -->
             <div class="section">
                 <h3>Step 1: Share Your Location</h3>
@@ -65,7 +74,8 @@
         <div id="thankYouState" class="card hidden">
             <div class="header">
                 <h1>🙏 Thank You!</h1>
-                <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.</p>
+                <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.
+                </p>
             </div>
             <p class="hint" style="text-align:center; margin-bottom:20px;">
                 Want to send another update (new location or voice message) to the owner?

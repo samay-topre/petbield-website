@@ -15,7 +15,9 @@ const errorMessage = document.getElementById("errorMessage");
 const mainContent = document.getElementById("mainContent");
 const petNameEl = document.getElementById("petName");
 const specialInstructionsEl = document.getElementById("specialInstructions");
-
+const dropoffSection = document.getElementById("dropoffSection");
+const dropoffAddress = document.getElementById("dropoffAddress");
+const dropoffMapLink = document.getElementById("dropoffMapLink");
 const locationBtn = document.getElementById("locationBtn");
 const locationStatus = document.getElementById("locationStatus");
 
@@ -75,6 +77,16 @@ async function loadCardInfo() {
       card.special_instructions && card.special_instructions.trim() !== ""
         ? card.special_instructions
         : "No special instructions provided.";
+
+    // Show drop-off address + Google Maps link, if owner set a location
+    if (card.owner_latitude && card.owner_longitude) {
+      dropoffSection.classList.remove("hidden");
+      dropoffAddress.textContent =
+        card.owner_address && card.owner_address.trim() !== ""
+          ? card.owner_address
+          : "No address text provided, use the map link below.";
+      dropoffMapLink.href = `https://www.google.com/maps?q=${card.owner_latitude},${card.owner_longitude}`;
+    }
 
     loadingState.classList.add("hidden");
     mainContent.classList.remove("hidden");
