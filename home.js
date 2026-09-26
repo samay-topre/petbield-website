@@ -1,3 +1,8 @@
+const urlParams = new URLSearchParams(window.location.search);
+const existingCardId = urlParams.get("id");
+if (existingCardId) {
+  window.location.href = `scan.html?id=${existingCardId}`;
+}
 const scanBtn = document.getElementById("scanBtn");
 const scannerModal = document.getElementById("scannerModal");
 const closeScannerBtn = document.getElementById("closeScannerBtn");
