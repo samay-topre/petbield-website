@@ -171,6 +171,11 @@ sendBtn.addEventListener("click", async () => {
     return;
   }
 
+  if (audioBlob === null) {
+    sendStatus.textContent = "⚠️ Please record a voice message before sending.";
+    return;
+  }
+
   sendBtn.disabled = true;
   sendStatus.textContent = "Sending...";
 

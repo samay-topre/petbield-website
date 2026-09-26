@@ -21,7 +21,8 @@
         <div id="errorState" class="card hidden">
             <h2>Oops!</h2>
             <p id="errorMessage">Something went wrong. Please try again.</p>
-            <a href="index.html" class="btn btn-outline" style="display:block; text-align:center; text-decoration:none; margin-top:14px;">
+            <a href="index.html" class="btn btn-outline"
+                style="display:block; text-align:center; text-decoration:none; margin-top:14px;">
                 Back to Home
             </a>
         </div>
@@ -55,8 +56,8 @@
                 </div>
 
                 <div class="section">
-                    <h3>Step 2: Leave a Voice Message (Optional)</h3>
-                    <p class="hint">Tell the owner where you found their pet.</p>
+                    <h3>Step 2: Leave a Voice Message <span style="color:#d9534f;">*</span></h3>
+                    <p class="hint">Tell the owner where you found their pet. This is required.</p>
                     <div class="recorder-controls">
                         <button id="recordBtn" class="btn btn-secondary">🎙️ Start Recording</button>
                         <button id="stopBtn" class="btn btn-secondary hidden">⏹️ Stop</button>
@@ -78,9 +79,11 @@
             <div id="thankYouView" class="hidden">
                 <div class="header">
                     <h1>🙏 Thank You!</h1>
-                    <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.</p>
+                    <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their
+                        owner.</p>
                 </div>
-                <a href="index.html" class="btn btn-primary" style="display:block; text-align:center; text-decoration:none;">
+                <a href="index.html" class="btn btn-primary"
+                    style="display:block; text-align:center; text-decoration:none;">
                     Go to Home Page
                 </a>
             </div>
