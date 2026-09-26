@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetBield - Found a Pet?</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Loading state -->
+        <div id="loadingState" class="card">
+            <p>Loading pet details...</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="errorState" class="card hidden">
+            <h2>Oops!</h2>
+            <p id="errorMessage">Something went wrong. Please try again.</p>
+            <a href="index.html" class="btn btn-outline" style="display:block; text-align:center; text-decoration:none; margin-top:14px;">
+                Back to Home
+            </a>
+        </div>
+
+        <!-- Owner's preferred drop-off location - separate box, stays visible across both views below -->
+        <div id="dropoffSection" class="card hidden" style="margin-bottom:14px;">
+            <h3 style="color:#3d1e80; margin-bottom:8px;">📍 Pet Owner's Location</h3>
+            <p id="dropoffAddress" class="instructions-box" style="margin-bottom:10px;"></p>
+            <p class="hint" style="margin-bottom:10px;">Please help get this pet to their owner's location above.</p>
+            <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
+                style="display:block; text-align:center; text-decoration:none;">
+                Get Directions
+            </a>
+        </div>
+
+        <!-- Main action box: content inside this box switches between the steps view and the thank-you view -->
+        <div id="mainContent" class="card hidden">
+
+            <!-- View 1: the actual steps (location, voice, instructions, send) -->
+            <div id="activeStepsView">
+                <div class="header">
+                    <h1>🐾 <span id="petName">Pet</span></h1>
+                    <p class="subtitle">This pet's owner is looking for them. Thank you for scanning!</p>
+                </div>
+
+                <div class="section">
+                    <h3>Step 1: Share Your Location <span style="color:#d9534f;">*</span></h3>
+                    <p class="hint">This is required so the owner knows where their pet was found.</p>
+                    <button id="locationBtn" class="btn btn-primary">📍 Share My Location</button>
+                    <p id="locationStatus" class="status-text"></p>
+                </div>
+
+                <div class="section">
+                    <h3>Step 2: Leave a Voice Message (Optional)</h3>
+                    <p class="hint">Tell the owner where you found their pet.</p>
+                    <div class="recorder-controls">
+                        <button id="recordBtn" class="btn btn-secondary">🎙️ Start Recording</button>
+                        <button id="stopBtn" class="btn btn-secondary hidden">⏹️ Stop</button>
+                        <button id="restartBtn" class="btn btn-outline hidden">🔄 Re-record</button>
+                    </div>
+                    <audio id="audioPreview" class="hidden" controls></audio>
+                </div>
+
+                <div class="section">
+                    <h3>Special Instructions from Owner</h3>
+                    <p id="specialInstructions" class="instructions-box">No special instructions provided.</p>
+                </div>
+
+                <button id="sendBtn" class="btn btn-send">✅ Send Info to Owner</button>
+                <p id="sendStatus" class="status-text"></p>
+            </div>
+
+            <!-- View 2: thank you message, shown in place of the steps after a successful send -->
+            <div id="thankYouView" class="hidden">
+                <div class="header">
+                    <h1>🙏 Thank You!</h1>
+                    <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.</p>
+                </div>
+                <a href="index.html" class="btn btn-primary" style="display:block; text-align:center; text-decoration:none;">
+                    Go to Home Page
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

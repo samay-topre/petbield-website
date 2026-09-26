@@ -4,103 +4,115 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PetBield - Found a Pet?</title>
+    <title>PetBield - Smart QR ID Tags for Pets</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="home-body">
 
-      <div class="container">
+    <div class="home-container">
 
-        <!-- Owner's preferred drop-off location - stays visible across main content AND thank you screen -->
-        <div id="dropoffSection" class="card hidden" style="margin-bottom:14px;">
-            <h3 style="color:#3d1e80; margin-bottom:8px;">📍 Preferred Drop-off Location</h3>
-            <p id="dropoffAddress" class="instructions-box" style="margin-bottom:10px;"></p>
-            <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
-                style="display:block; text-align:center; text-decoration:none;">
-                Open in Google Maps
-            </a>
-        </div>
-
-        <!-- Loading state, shown while we check the card code -->
-
-        <!-- Owner's preferred drop-off location - always visible once loaded, independent of page state -->
-       
-        <!-- Loading state, shown while we check the card code -->
-        <div id="loadingState" class="card">
-            <p>Loading pet details...</p>
-        </div>
-
-        <!-- Error state, shown if card code is invalid or missing -->
-        <div id="errorState" class="card hidden">
-            <h2>Oops!</h2>
-            <p id="errorMessage">Something went wrong. Please try again.</p>
-        </div>
-
-        <!-- Main content, shown once card is verified -->
-        <div id="mainContent" class="card hidden">
-            <div class="header">
-                <h1>🐾 <span id="petName">Pet</span></h1>
-                <p class="subtitle">This pet's owner is looking for them. Thank you for scanning!</p>
+        <!-- Top bar with logo -->
+        <div class="home-navbar">
+            <div class="logo-wrap">
+                <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5 L90 20 V45 C90 70 72 88 50 95 C28 88 10 70 10 45 V20 Z" fill="#ffffff" stroke="#5a2fb8" stroke-width="5"/>
+                    <path d="M50 5 L90 20 V45 C90 70 72 88 50 95 C28 88 10 70 10 45 V20 Z" fill="none" stroke="#5a2fb8" stroke-width="5"/>
+                    <circle cx="50" cy="52" r="9" fill="#5a2fb8"/>
+                    <circle cx="33" cy="40" r="7" fill="#5a2fb8"/>
+                    <circle cx="67" cy="40" r="7" fill="#5a2fb8"/>
+                    <circle cx="27" cy="55" r="6.5" fill="#5a2fb8"/>
+                    <circle cx="73" cy="55" r="6.5" fill="#5a2fb8"/>
+                </svg>
+                <span class="logo-text">PetBield</span>
             </div>
+        </div>
 
-            <!-- <div id="dropoffSection" class="hidden">
-                <h3>📍 Preferred Drop-off Location</h3>
-                <p id="dropoffAddress" class="instructions-box" style="margin: 8px 0 10px;"></p>
-                <a id="dropoffMapLink" href="#" target="_blank" class="btn btn-primary"
-                    style="display:block; text-align:center; text-decoration:none;">
-                    Open in Google Maps
-                </a>
-            </div> -->
+        <!-- Hero section -->
+        <div class="hero">
+            <h1>Smart ID Cards That Bring Lost Pets Home</h1>
+            <p>PetBield is a QR-code ID card for your pet's collar. If your pet ever wanders off, anyone who finds
+                them can scan the card, share their location, and reach you instantly — no app or sign-up needed on
+                their end.</p>
+        </div>
 
-            <!-- Step 1: Location -->
-            <div class="section">
-                <h3>Step 1: Share Your Location</h3>
-                <p class="hint">This helps the owner find their pet quickly.</p>
-                <button id="locationBtn" class="btn btn-primary">📍 Share My Location</button>
-                <p id="locationStatus" class="status-text"></p>
-            </div>
+        <!-- Found a pet CTA -->
+        <div class="card found-pet-box">
+            <h2>🐾 Found a Pet?</h2>
+            <p>If you've found a pet wearing a PetBield card, scan the QR code on their tag to notify the owner
+                immediately.</p>
+            <button id="scanBtn" class="btn btn-primary">📷 Scan the Card</button>
+        </div>
 
-            <!-- Step 2: Voice message -->
-            <div class="section">
-                <h3>Step 2: Leave a Voice Message (Optional)</h3>
-                <p class="hint">Tell the owner where you found their pet.</p>
-                <div class="recorder-controls">
-                    <button id="recordBtn" class="btn btn-secondary">🎙️ Start Recording</button>
-                    <button id="stopBtn" class="btn btn-secondary hidden">⏹️ Stop</button>
-                    <button id="restartBtn" class="btn btn-outline hidden">🔄 Re-record</button>
+        <!-- How it works -->
+        <div class="card">
+            <h2>How PetBield Works</h2>
+            <div class="how-step">
+                <div class="how-num">1</div>
+                <div>
+                    <h4>Owner activates the card</h4>
+                    <p>Pet owners buy a PetBield card, then use our app to link it to their pet's name, their
+                        WhatsApp number, and a preferred drop-off location.</p>
                 </div>
-                <audio id="audioPreview" class="hidden" controls></audio>
             </div>
-
-            <!-- Step 3: Special instructions from owner -->
-            <div class="section">
-                <h3>Special Instructions from Owner</h3>
-                <p id="specialInstructions" class="instructions-box">No special instructions provided.</p>
+            <div class="how-step">
+                <div class="how-num">2</div>
+                <div>
+                    <h4>Card goes on the pet's collar</h4>
+                    <p>The activated card hangs on the pet's neck belt, ready at all times.</p>
+                </div>
             </div>
-
-            <!-- Send button -->
-            <button id="sendBtn" class="btn btn-send">✅ Send Info to Owner</button>
-            <p id="sendStatus" class="status-text"></p>
+            <div class="how-step">
+                <div class="how-num">3</div>
+                <div>
+                    <h4>A stranger finds your pet</h4>
+                    <p>They scan the QR code — no app required — and land on a page showing your pet's name and your
+                        instructions.</p>
+                </div>
+            </div>
+            <div class="how-step">
+                <div class="how-num">4</div>
+                <div>
+                    <h4>You get notified instantly</h4>
+                    <p>Their location (and an optional voice message) is sent straight to your WhatsApp, so you can
+                        go get your pet right away.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Thank you state, shown after a successful send (sibling of mainContent, NOT inside it) -->
-        <div id="thankYouState" class="card hidden">
-            <div class="header">
-                <h1>🙏 Thank You!</h1>
-                <p class="subtitle">You've helped reunite <span id="thankYouPetName">this pet</span> with their owner.
-                </p>
-            </div>
-            <p class="hint" style="text-align:center; margin-bottom:20px;">
-                Want to send another update (new location or voice message) to the owner?
-            </p>
-            <button id="sendAnotherBtn" class="btn btn-primary">Yes, Send Another Update</button>
+        <!-- Why PetBield -->
+        <div class="card">
+            <h2>Why PetBield?</h2>
+            <ul class="why-list">
+                <li>✅ No app needed for whoever finds your pet</li>
+                <li>✅ Instant WhatsApp alert with live location</li>
+                <li>✅ Optional voice message from the finder</li>
+                <li>✅ Your preferred drop-off address shown to the finder</li>
+                <li>✅ Secure — only you can update your card's info</li>
+            </ul>
         </div>
+
+        <footer class="home-footer">
+            <p>© 2026 PetBield. All rights reserved.</p>
+        </footer>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+    <!-- Scanner modal -->
+    <div id="scannerModal" class="scanner-overlay hidden">
+        <div class="scanner-box">
+            <div class="scanner-header">
+                <span>Scan PetBield Card</span>
+                <button id="closeScannerBtn" class="scanner-close">✕</button>
+            </div>
+            <div id="qr-reader"></div>
+            <p class="hint" style="text-align:center; margin-top:10px;">Point your camera at the QR code on the pet's
+                card</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="home.js"></script>
 </body>
 
 </html>

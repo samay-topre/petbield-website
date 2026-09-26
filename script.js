@@ -13,11 +13,16 @@ const loadingState = document.getElementById("loadingState");
 const errorState = document.getElementById("errorState");
 const errorMessage = document.getElementById("errorMessage");
 const mainContent = document.getElementById("mainContent");
+const activeStepsView = document.getElementById("activeStepsView");
+const thankYouView = document.getElementById("thankYouView");
 const petNameEl = document.getElementById("petName");
+const thankYouPetName = document.getElementById("thankYouPetName");
 const specialInstructionsEl = document.getElementById("specialInstructions");
+
 const dropoffSection = document.getElementById("dropoffSection");
 const dropoffAddress = document.getElementById("dropoffAddress");
 const dropoffMapLink = document.getElementById("dropoffMapLink");
+
 const locationBtn = document.getElementById("locationBtn");
 const locationStatus = document.getElementById("locationStatus");
 
@@ -29,10 +34,6 @@ const audioPreview = document.getElementById("audioPreview");
 const sendBtn = document.getElementById("sendBtn");
 const sendStatus = document.getElementById("sendStatus");
 
-const thankYouState = document.getElementById("thankYouState");
-const thankYouPetName = document.getElementById("thankYouPetName");
-const sendAnotherBtn = document.getElementById("sendAnotherBtn");
-
 // ====== STATE VARIABLES ======
 let capturedLat = null;
 let capturedLng = null;
@@ -40,10 +41,11 @@ let audioBlob = null;
 let mediaRecorder = null;
 let audioChunks = [];
 
-// ====== SHOW A GENERIC ERROR (never show technical details to user) ======
+// ====== SHOW A GENERIC ERROR ======
 function showError(message) {
   loadingState.classList.add("hidden");
   mainContent.classList.add("hidden");
+  dropoffSection.classList.add("hidden");
   errorState.classList.remove("hidden");
   errorMessage.textContent = message || "Unknown error occurred. Please try again.";
 }
@@ -78,13 +80,12 @@ async function loadCardInfo() {
         ? card.special_instructions
         : "No special instructions provided.";
 
-    // Show drop-off address + Google Maps link, if owner set a location
-         if (card.owner_latitude && card.owner_longitude) {
+    if (card.owner_latitude && card.owner_longitude) {
       dropoffSection.classList.remove("hidden");
       dropoffAddress.textContent =
         card.owner_address && card.owner_address.trim() !== ""
           ? card.owner_address
-          : "No address text provided, use the map link below.";
+          : "No address text provided, use the button below.";
       dropoffMapLink.href = `https://www.google.com/maps?q=${card.owner_latitude},${card.owner_longitude}`;
     }
 
@@ -142,7 +143,6 @@ recordBtn.addEventListener("click", async () => {
     recordBtn.classList.add("hidden");
     stopBtn.classList.remove("hidden");
   } catch (err) {
-    locationStatus.textContent = "";
     alert("Microphone access denied or unavailable.");
   }
 });
@@ -152,7 +152,7 @@ stopBtn.addEventListener("click", () => {
     mediaRecorder.stop();
   }
   stopBtn.classList.add("hidden");
-  recordBtn.classList.add("hidden"); // hide "Start Recording" too, only show preview + re-record
+  recordBtn.classList.add("hidden");
 });
 
 restartBtn.addEventListener("click", () => {
@@ -160,7 +160,7 @@ restartBtn.addEventListener("click", () => {
   audioPreview.classList.add("hidden");
   restartBtn.classList.add("hidden");
   audioPreview.src = "";
-  recordBtn.classList.remove("hidden"); // bring back "Start Recording" so they can record fresh
+  recordBtn.classList.remove("hidden");
   recordBtn.textContent = "🎙️ Start Recording";
 });
 
@@ -208,10 +208,10 @@ sendBtn.addEventListener("click", async () => {
       return;
     }
 
-    // Show the Thank You screen instead of just a status message
+    // Swap the box's content from steps view to thank-you view, in place
     thankYouPetName.textContent = petNameEl.textContent;
-    mainContent.classList.add("hidden");
-    thankYouState.classList.remove("hidden");
+    activeStepsView.classList.add("hidden");
+    thankYouView.classList.remove("hidden");
   } catch (err) {
     showFailure();
   }
@@ -221,8 +221,3 @@ function showFailure() {
   sendStatus.textContent = "Unknown error occurred. Please try again.";
   sendBtn.disabled = false;
 }
-
-// ====== SEND ANOTHER UPDATE (reload page fresh, like rescanning) ======
-sendAnotherBtn.addEventListener("click", () => {
-  window.location.reload();
-});
