@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PetBield - Admin: Generate Cards</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
+    h1 { color: #5a2fb8; }
+    input, button { padding: 10px; font-size: 15px; margin: 8px 0; }
+    button { background: #5a2fb8; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    #results { margin-top: 20px; }
+    .card-row { display: flex; align-items: center; gap: 16px; padding: 12px; border-bottom: 1px solid #eee; }
+    .card-row img { width: 100px; height: 100px; }
+    .card-code { font-weight: bold; font-size: 16px; color: #3d1e80; }
+    .card-url { font-size: 12px; color: #888; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>PetBield - Generate New Cards</h1>
+  <p>This page is for admin use only (you). It creates new unactivated cards in the database and shows their QR codes.</p>
+
+  <label>How many cards to generate?</label><br/>
+  <input type="number" id="countInput" value="10" min="1" max="100" /><br/>
+  <button onclick="generateCards()">Generate Cards</button>
+
+  <div id="results"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const SUPABASE_URL = "https://wkhlecvfygujdxokqoln.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_4p9Ng4ST9gaIqUkFKlwryw_iaXrdK3E";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const BASE_URL = "https://petbield-website-nc4j.vercel.app/index.html?id=";
+
+    async function generateCards() {
+      const count = parseInt(document.getElementById("countInput").value);
+      if (!count || count < 1 || count > 100) {
+        alert("Please enter a number between 1 and 100.");
+        return;
+      }
+
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "Generating...";
+
+      const newCodes = [];
+
+      for (let i = 0; i < count; i++) {
+        const code = generateRandomCode();
+        newCodes.push(code);
+      }
+
+      // Insert all codes into the database at once
+      const rows = newCodes.map(code => ({ card_code: code, status: 'unactivated' }));
+      const { error } = await supabaseClient.from('cards').insert(rows);
+
+      if (error) {
+        resultsDiv.innerHTML = "Error saving to database: " + error.message;
+        return;
+      }
+
+      resultsDiv.innerHTML = "";
+
+      for (const code of newCodes) {
+        const url = BASE_URL + code;
+        const row = document.createElement("div");
+        row.className = "card-row";
+
+        const canvas = document.createElement("canvas");
+        await QRCode.toCanvas(canvas, url, { width: 100 });
+
+        const info = document.createElement("div");
+        info.innerHTML = `<div class="card-code">${code}</div><div class="card-url">${url}</div>`;
+
+        row.appendChild(canvas);
+        row.appendChild(info);
+        resultsDiv.appendChild(row);
+      }
+    }
+
+    function generateRandomCode() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let result = "PB";
+      for (let i = 0; i < 8; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+  </script>
+</body>
+</html>
