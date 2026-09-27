@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetBield - Smart QR ID Tags for Pets</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 
 <body class="home-body">
@@ -15,101 +18,93 @@
         <!-- Top bar with logo -->
         <div class="home-navbar">
             <div class="logo-wrap">
-                <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 5 L90 20 V45 C90 70 72 88 50 95 C28 88 10 70 10 45 V20 Z" fill="#ffffff" stroke="#5a2fb8" stroke-width="5"/>
-                    <path d="M50 5 L90 20 V45 C90 70 72 88 50 95 C28 88 10 70 10 45 V20 Z" fill="none" stroke="#5a2fb8" stroke-width="5"/>
-                    <circle cx="50" cy="52" r="9" fill="#5a2fb8"/>
-                    <circle cx="33" cy="40" r="7" fill="#5a2fb8"/>
-                    <circle cx="67" cy="40" r="7" fill="#5a2fb8"/>
-                    <circle cx="27" cy="55" r="6.5" fill="#5a2fb8"/>
-                    <circle cx="73" cy="55" r="6.5" fill="#5a2fb8"/>
-                </svg>
+                <img src="petbield_logo.png" alt="PetBield" width="34" height="34" />
                 <span class="logo-text">PetBield</span>
             </div>
         </div>
-
         <!-- Hero section -->
         <div class="hero">
             <h1>Smart ID Cards That Bring Lost Pets Home</h1>
-                        <p>PetBield is a QR-code ID card for your pet's collar. If your pet ever wanders off, anyone who finds
+            <p>PetBield is a QR-code ID card for your pet's collar. If your pet ever wanders off, anyone who finds
                 them can scan the card, share their location, and reach you instantly.</p>
 
-        <!-- Found a pet CTA -->
-        <div class="card found-pet-box">
-            <h2>🐾 Found a Pet?</h2>
-            <p>If you've found a pet wearing a PetBield card, scan the QR code on their tag to notify the owner
-                immediately.</p>
-            <button id="scanBtn" class="btn btn-primary">📷 Scan the Card</button>
-        </div>
+            <!-- Found a pet CTA -->
+            <div class="card found-pet-box">
+                <h2>🐾 Found a Pet?</h2>
+                <p>If you've found a pet wearing a PetBield card, scan the QR code on their tag to notify the owner
+                    immediately.</p>
+                <button id="scanBtn" class="btn btn-primary">📷 Scan the Card</button>
+            </div>
 
-        <!-- How it works -->
-        <div class="card">
-            <h2>How PetBield Works</h2>
-            <div class="how-step">
-                <div class="how-num">1</div>
-                <div>
-                    <h4>Owner activates the card</h4>
-                    <p>Pet owners buy a PetBield card, then use our app to link it to their pet's name, their
-                        WhatsApp number, and a preferred drop-off location.</p>
+            <!-- How it works -->
+            <div class="card">
+                <h2>How PetBield Works</h2>
+                <div class="how-step">
+                    <div class="how-num">1</div>
+                    <div>
+                        <h4>Owner activates the card</h4>
+                        <p>Pet owners buy a PetBield card, then use our app to link it to their pet's name, their
+                            WhatsApp number, and a preferred drop-off location.</p>
+                    </div>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">2</div>
+                    <div>
+                        <h4>Card goes on the pet's collar</h4>
+                        <p>The activated card hangs on the pet's neck belt, ready at all times.</p>
+                    </div>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">3</div>
+                    <div>
+                        <h4>A stranger finds your pet</h4>
+                        <p>They scan the QR code and land on a page showing your pet's name and your
+                            instructions.</p>
+                    </div>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">4</div>
+                    <div>
+                        <h4>You get notified instantly</h4>
+                        <p>Their location and voice message is sent straight to your WhatsApp, so you can
+                            go get your pet right away.</p>
+                    </div>
                 </div>
             </div>
-            <div class="how-step">
-                <div class="how-num">2</div>
-                <div>
-                    <h4>Card goes on the pet's collar</h4>
-                    <p>The activated card hangs on the pet's neck belt, ready at all times.</p>
-                </div>
+
+            <!-- Why PetBield -->
+            <div class="card">
+                <h2>Why PetBield?</h2>
+                <ul class="why-list">
+                    <li>✅ Instant WhatsApp alert with live location</li>
+                    <li>✅ Voice message from the finder</li>
+                    <li>✅ Your preferred drop-off address shown to the finder</li>
+                    <li>✅ Secure — only you can update your card's info</li>
+                </ul>
             </div>
-            <div class="how-step">
-                <div class="how-num">3</div>
-                                <div>
-                    <h4>A stranger finds your pet</h4>
-                    <p>They scan the QR code and land on a page showing your pet's name and your
-                        instructions.</p>
+
+            <footer class="home-footer">
+                <p>© 2026 PetBield. All rights reserved.</p>
+            </footer>
+
+        </div>
+
+        <!-- Scanner modal -->
+        <div id="scannerModal" class="scanner-overlay hidden">
+            <div class="scanner-box">
+                <div class="scanner-header">
+                    <span>Scan PetBield Card</span>
+                    <button id="closeScannerBtn" class="scanner-close">✕</button>
                 </div>
-            </div>
-            <div class="how-step">
-                <div class="how-num">4</div>
-                <div>
-                    <h4>You get notified instantly</h4>
-                    <p>Their location and voice message is sent straight to your WhatsApp, so you can
-                        go get your pet right away.</p>
-                </div>
+                <div id="qr-reader"></div>
+                <p class="hint" style="text-align:center; margin-top:10px;">Point your camera at the QR code on the
+                    pet's
+                    card</p>
             </div>
         </div>
 
-        <!-- Why PetBield -->
-        <div class="card">
-            <h2>Why PetBield?</h2>
-                       <ul class="why-list">
-                <li>✅ Instant WhatsApp alert with live location</li>
-                <li>✅ Voice message from the finder</li>
-                <li>✅ Your preferred drop-off address shown to the finder</li>
-                <li>✅ Secure — only you can update your card's info</li>
-            </ul>
-        </div>
-
-        <footer class="home-footer">
-            <p>© 2026 PetBield. All rights reserved.</p>
-        </footer>
-
-    </div>
-
-    <!-- Scanner modal -->
-    <div id="scannerModal" class="scanner-overlay hidden">
-        <div class="scanner-box">
-            <div class="scanner-header">
-                <span>Scan PetBield Card</span>
-                <button id="closeScannerBtn" class="scanner-close">✕</button>
-            </div>
-            <div id="qr-reader"></div>
-            <p class="hint" style="text-align:center; margin-top:10px;">Point your camera at the QR code on the pet's
-                card</p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-    <script src="home.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+        <script src="home.js"></script>
 </body>
 
 </html>
